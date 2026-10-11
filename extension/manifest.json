@@ -1,13 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "Double Check",
+  "name": "Auto-fill keybind",
   "version": "0.1.0",
-  "description": "Cross-checks permit fields between an audit page and a state permit portal.",
+  "description": "Clicks the autofill button within the Atlas browser extension.",
 
   "action": {
-    "default_title": "Double Check",
+    "default_title": "Auto-fill keybind",
     "default_popup": "popup/popup.html"
   },
+
+  "permissions": ["storage"],
 
   "browser_specific_settings": {
     "gecko": {

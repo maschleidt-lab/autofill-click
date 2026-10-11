@@ -4,11 +4,19 @@ let dice6Result = document.getElementById("dice6Result");
 // Dice keybind 
 let diceKeybind = "d";
 // Combine results
-let rebindResult = document.getElementById("keyBindResult")
+let keyBindResult = document.getElementById("keyBindResult")
 // For testing testing of the rebind has been clicked
 let isRebinding = false
 // #endregion
+// #region  ##### STARTUP #####
+// Get dice keybind
+browser.storage.local.get("setDiceKey").then(function(result) {
+    if (result) {
+        diceKeybind = result
+    }
+})
 
+// #endregion
 // #region ##### FUNCTIONS ##### 
 // Keybind paragraph 
 function keyBindResultFunc() {
@@ -34,8 +42,9 @@ document.addEventListener("keydown", function(event) {
     console.log(event.key);
     if (isRebinding && event.key !== "Shift" && event.key !== "Control" && event.key !== "Meta") {
         diceKeybind = event.key.toLocaleLowerCase()
-        isRebinding = false
+        browser.storage.local.set({setDiceKey: diceKeybind})
         keyBindResultFunc()
+        isRebinding = false
     }
     else if (event.key.toLowerCase() === diceKeybind) {
         rollDice6();
